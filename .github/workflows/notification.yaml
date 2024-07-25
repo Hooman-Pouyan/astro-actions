@@ -1,0 +1,27 @@
+name: Notification
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+# inputs:
+  # notification-token:
+    # required: True
+jobs:
+  notify:
+   runs-on: ubuntu-latest
+   steps:
+     - name: send custom message
+       uses: haishanh/actions-telegram-notification@v1clea
+       with:
+         to: ${{ secrets.TELEGRAM_TO }}
+         token: eyJhbGciOiJIUzI1NiJ9.eyJjaGF0SWQiOjYxMDQ5Nzg5OSwiYm90SWQiOiJnaGEiLCJpYXQiOjE3MjE5MzExOTN9.QenYXKaA2akV9drTL2rOKCfiSYfL9SsKWreflQpy3QU
+         message: |
+           https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }} is completed.
+           
+           The average time to complete the test task is ${{ steps.average.outputs.value }} seconds.
+
+           name: "Send telegram notification"
