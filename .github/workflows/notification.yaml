@@ -1,21 +1,21 @@
-name: Notification
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+# name: Notification
+# on:
+#   push:
+#     branches:
+#       - main
+#   pull_request:
+#     branches:
+#       - main
 
-# inputs:
-  # notification-token:
-    # required: True
-jobs:
-  notify:
-   runs-on: ubuntu-latest
-   steps:
-    - uses: haishanh/actions-telegram-notification@v1
-      if: ${{ always() }}
-      with:
-        notification-token: ${{ secrets.NOTIFICATION_TOKEN }}
-        job-status: ${{ job.status }}
+# # inputs:
+#   # notification-token:
+#     # required: True
+# jobs:
+#   notify:
+#    runs-on: ubuntu-latest
+#    steps:
+#     - uses: haishanh/actions-telegram-notification@v1
+#       if: ${{ always() }}
+#       with:
+#         notification-token: ${{ secrets.NOTIFICATION_TOKEN }}
+#         job-status: ${{ job.status }}

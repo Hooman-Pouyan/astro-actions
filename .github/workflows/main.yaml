@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python 3.9
-        uses: actions/
+        uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: Install dependencies
@@ -28,4 +28,9 @@ jobs:
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Test with pytest
         run: |
-          pytest   
+          pytest
+      - uses: haishanh/actions-telegram-notification@v1
+        if: ${{ always() }}
+        with:
+          notification-token: ${{ secrets.NOTIFICATION_TOKEN }}
+          job-status: ${{ job.status }}
